@@ -1,0 +1,17 @@
+h2{
+    color:green;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: xx-large;
+
+}
+ 
+#submit{
+    color: blue;
+    font-family: monospace;
+}
+#divbody{
+    color: red;
+}
+body{
+    background-color: aqua;
+}

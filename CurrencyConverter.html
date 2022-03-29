@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            document.querySelector('form').onsubmit = function(){
+                fetch('http://data.fixer.io/api/latest?access_key=70e6592d57eb999ef73ffd064f0add69&format=1')
+                .then(response => response.json())
+                .then(data =>{
+                    const currency = document.querySelector('#curreny').value.toUpperCase();
+
+                    const rate = data.rates[currency];
+                     
+                    if(rate !== undefined){
+                        document.querySelector('body').innerHTML = `1 euro = ${rate.toFixed(2)} ${currency}`;
+                    }else{
+                        
+                        document.querySelector('#divbody').innerHTML = 'Invalid Currency Please enter Valid currency name ';
+                    }
+                    
+                })
+                .catch(error => {
+                    console.log('Error',error);
+                })
+
+                return false;
+            }
+
+        })
+
+
+    </script>
+    <link rel="stylesheet" href="Currency.css">
+
+</head>
+<body>
+    <h2>Exchange Rates</h2>
+    <div id="divbody"></div>
+    <form>
+        <input type="text"  id="curreny">
+        <input type="submit"value = "Convert" id="submit">
+    </form>
+
+
+</body>
+</html>
